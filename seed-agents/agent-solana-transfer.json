@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://solana.agent/transfer",
+  "identity": {
+    "agent_name": "Solana Transfer Agent",
+    "developer_organization": "Solana Labs",
+    "version": "1.0.0",
+    "description": "Transfer SOL, pay transaction fees, and stake tokens via REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "from_wallet": { "type": "string" },
+        "to_wallet": { "type": "string" },
+        "amount_lamports": { "type": "integer" },
+        "priority_fee": { "type": "integer", "default": 0 }
+      },
+      "required": ["from_wallet", "to_wallet", "amount_lamports"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "signature": { "type": "string" },
+        "status": { "type": "string", "enum": ["confirmed", "failed", "pending"] },
+        "slot": { "type": "integer" },
+        "fee_lamports": { "type": "integer" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://solana.com/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_solana_transfer_v1_0x5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F",
+    "settlement": {
+      "supported_chains_or_gateways": ["Solana", "Base"],
+      "wallet_address": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+    }
+  }
+}
