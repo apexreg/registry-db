@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://twilio.alpha/sms",
+  "identity": {
+    "agent_name": "Twilio SMS Agent",
+    "developer_organization": "Twilio Inc",
+    "version": "1.0.0",
+    "description": "Send SMS messages, deliver verification codes, and broadcast via REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "to": { "type": "string" },
+        "from": { "type": "string" },
+        "body": { "type": "string" },
+        "media_urls": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["to", "from", "body"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "sid": { "type": "string" },
+        "status": { "type": "string", "enum": ["queued", "sent", "delivered", "failed"] },
+        "date_sent": { "type": "string" },
+        "num_segments": { "type": "integer" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://twilio.com/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_twilio_sms_v1_0x7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F5A6B",
+    "settlement": {
+      "supported_chains_or_gateways": ["Stripe", "Base"],
+      "wallet_address": "0xDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
+    }
+  }
+}
