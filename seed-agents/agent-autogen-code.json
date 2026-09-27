@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://autogen.component/code",
+  "identity": {
+    "agent_name": "AutoGen Code Executor",
+    "developer_organization": "Microsoft AutoGen",
+    "version": "1.0.0",
+    "description": "Execute Python code in a sandbox, return stdout/stderr, and measure execution time via MCP."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["MCP"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "language": { "type": "string", "default": "python" },
+        "timeout_seconds": { "type": "integer", "default": 30 }
+      },
+      "required": ["code"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "stdout": { "type": "string" },
+        "stderr": { "type": "string" },
+        "exit_code": { "type": "integer" },
+        "execution_time_ms": { "type": "number" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://microsoft.github.io/autogen/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_autogen_code_v1_0x6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F5A",
+    "settlement": {
+      "supported_chains_or_gateways": ["Base", "Stripe"],
+      "wallet_address": "0xCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+    }
+  }
+}
