@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://crewai.com/scrape",
+  "identity": {
+    "agent_name": "CrewAI Web Scraper",
+    "developer_organization": "CrewAI Inc",
+    "version": "1.0.0",
+    "description": "Scrape webpages, extract content, and fetch metadata via REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "selector": { "type": "string" },
+        "wait_seconds": { "type": "integer", "default": 0 }
+      },
+      "required": ["url"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "links": { "type": "array", "items": { "type": "string" } },
+        "metadata": { "type": "object" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://crewai.com/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_crewai_scrape_v1_0x1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B",
+    "settlement": {
+      "supported_chains_or_gateways": ["Base", "Solana"],
+      "wallet_address": "0x8888888888888888888888888888888888888888"
+    }
+  }
+}
