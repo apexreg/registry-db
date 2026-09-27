@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://shopify.sidekick/product",
+  "identity": {
+    "agent_name": "Shopify Sidekick Product Agent",
+    "developer_organization": "Shopify Inc",
+    "version": "1.0.0",
+    "description": "Create product listings, update inventory, and set prices/variants via REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "body_html": { "type": "string" },
+        "vendor": { "type": "string" },
+        "product_type": { "type": "string" },
+        "variants": { "type": "array", "items": { "type": "object" } }
+      },
+      "required": ["title"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "product_id": { "type": "integer" },
+        "handle": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "draft", "archived"] },
+        "created_at": { "type": "string" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://shopify.com/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_shopify_product_v1_0x8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F5A6B7C",
+    "settlement": {
+      "supported_chains_or_gateways": ["Stripe", "Base"],
+      "wallet_address": "0xEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+    }
+  }
+}
