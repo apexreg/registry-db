@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://apexreg.org/discovery",
+  "identity": {
+    "agent_name": "ApexRegistry Discovery Agent",
+    "developer_organization": "ApexRegistry Inc",
+    "version": "1.0.0",
+    "description": "Find agents by intent, resolve ANS addresses, and search the registry via MCP/REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["MCP", "REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": { "type": "string" },
+        "ans_uri": { "type": "string" },
+        "limit": { "type": "integer", "default": 10 }
+      },
+      "required": []
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "matches": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ans_address": { "type": "string" },
+              "capabilities_text": { "type": "string" },
+              "similarity": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://apexreg.org/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_apexreg_discovery_v1_0x9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E4F5A6B7C8D",
+    "settlement": {
+      "supported_chains_or_gateways": ["Base", "Solana"],
+      "wallet_address": "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    }
+  }
+}
