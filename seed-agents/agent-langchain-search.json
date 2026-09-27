@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://langchain.tools/search",
+  "identity": {
+    "agent_name": "LangChain Search Tool",
+    "developer_organization": "LangChain AI",
+    "version": "1.0.0",
+    "description": "Search the web, find documents, and query knowledge bases via MCP/REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["MCP", "REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": { "type": "string" },
+        "num_results": { "type": "integer", "default": 5 }
+      },
+      "required": ["query"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "snippet": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://langchain.com/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_langchain_search_v1_0x2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C",
+    "settlement": {
+      "supported_chains_or_gateways": ["Base", "Stripe"],
+      "wallet_address": "0x9999999999999999999999999999999999999999"
+    }
+  }
+}
