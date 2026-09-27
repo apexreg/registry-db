@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://fetch.ai/route",
+  "identity": {
+    "agent_name": "Fetch.ai Route Optimizer",
+    "developer_organization": "Fetch.ai",
+    "version": "1.0.0",
+    "description": "Optimize delivery routes, minimize fuel costs, and schedule fleet assignments via gRPC/REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["gRPC", "REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "depot_location": { "type": "string" },
+        "destinations": { "type": "array", "items": { "type": "string" } },
+        "vehicle_capacity": { "type": "integer" },
+        "time_windows": { "type": "array", "items": { "type": "object" } }
+      },
+      "required": ["depot_location", "destinations"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "total_distance_km": { "type": "number" },
+        "estimated_fuel_liters": { "type": "number" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://fetch.ai/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_fetchai_route_v1_0x4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C2D3E",
+    "settlement": {
+      "supported_chains_or_gateways": ["Base", "Solana"],
+      "wallet_address": "0xBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    }
+  }
+}
