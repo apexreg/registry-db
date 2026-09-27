@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "ApexAgentCard",
+  "description": "The definitive identity, capability, and trust manifest for autonomous AI agents.",
+  "ard_version": "0.9",
+  "ans_address": "agent://pay.stripe.com/charge",
+  "identity": {
+    "agent_name": "Stripe Charge Agent",
+    "developer_organization": "Stripe Community Labs",
+    "version": "1.0.0",
+    "description": "Create and manage Stripe charges, process payments, and handle refunds via MCP/REST."
+  },
+  "capability_discovery": {
+    "supported_protocols": ["MCP", "REST"],
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "amount_in_cents": { "type": "integer" },
+        "currency": { "type": "string", "default": "usd" },
+        "customer_id": { "type": "string" },
+        "source": { "type": "string" }
+      },
+      "required": ["amount_in_cents", "customer_id"]
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "charge_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["succeeded", "pending", "failed"] },
+        "amount_captured": { "type": "integer" },
+        "created": { "type": "string" }
+      }
+    }
+  },
+  "trust_and_verification": {
+    "ssl_attestation_url": "https://stripe.com/.well-known/ai-ssl-attestation.json",
+    "public_key": "pk_stripe_charge_v1_0x4A5B6C7D8E9F0A1B2C3D4E5F6A7B8C9D0E1F2A3B",
+    "settlement": {
+      "supported_chains_or_gateways": ["Stripe", "Base"],
+      "wallet_address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+    }
+  }
+}
